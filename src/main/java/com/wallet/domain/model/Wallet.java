@@ -1,4 +1,4 @@
-package com.wallet.domain;
+package com.wallet.domain.model;
 
 import com.wallet.domain.exception.InsufficientBalanceException;
 

@@ -1,6 +1,5 @@
 package com.wallet.domain.model;
 
-import com.wallet.domain.Wallet;
 import com.wallet.domain.exception.InsufficientBalanceException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
