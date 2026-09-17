@@ -1,11 +1,17 @@
 package com.wallet.infrastructure.adapter.out.persistence;
 
+import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface WalletJpaRepository extends JpaRepository<WalletEntity, UUID> {
-    // JpaRepository já nos dá métodos prontos como save(), findById(), etc.
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    Optional<WalletEntity> findById(UUID id);
+
 }
