@@ -14,6 +14,7 @@ import java.util.UUID;
 public class WalletEntity {
 
     @Id // Chave primária
+    @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
     @Column(nullable = false, unique = true, length = 14)
@@ -26,8 +27,7 @@ public class WalletEntity {
     private Instant createdAt;
 
     // Construtor vazio obrigatório para o JPA/Hibernate
-    protected WalletEntity() {
-
+    public WalletEntity() {
     }
 
     // Construtor para transformar Domínio -> Entity
@@ -35,14 +35,40 @@ public class WalletEntity {
         this.id = id;
         this.document = document;
         this.balance = balance;
-        this.createdAt = createdAt;
-
+        this.createdAt = createdAt != null ? createdAt : Instant.now();
     }
 
     // Getters
-    public UUID getId() {return id;}
-    public String getDocument() {return document;}
-    public BigDecimal getBalance() {return balance;}
-    public Instant getCreatedAt() {return createdAt;}
+    public UUID getId() {
+        return id;
+    }
 
+    public String getDocument() {
+        return document;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    // Setters corrigidos para atribuir os valores corretamente
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
 }
